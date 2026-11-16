@@ -67,5 +67,17 @@
 
     <!-- JavaScript Link -->
     <script src="login-script.js"></script>
+    
+    <!-- Redirection Handler Script -->
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault(); // Prevents actual page reload if handled via JS
+            
+            // Optional: Add your authentication checks here before redirecting
+            
+            // Redirect to the target URL
+            window.location.href = 'https://tharahuokaing.github.io/international_school/';
+        });
+    </script>
 </body>
 </html>
