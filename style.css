@@ -1,6 +1,55 @@
 /* Custom Font Styling Extensions */
-@import url('https://fonts.googleapis.com/css2?family=Kantumruuy+Pro:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kantumruuy+Pro:wght@400;500;600;700&display=swap');
+
+:root {
+    --primary-blue: #0f172a; /* Deep blue-950 tone */
+    --accent-amber: #fbbf24; /* Accent amber-400 tone */
+}
 
 body {
     font-family: 'Kantumruuy Pro', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
+/* Custom Input Focus Glow Effect */
+input:focus {
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 0 3px rgba(15, 23, 42, 0.12);
+}
+
+/* Smooth Slide-Down Animation for Form Alerts */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+#formAlert:not(.hidden) {
+    animation: slideDown 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Custom Scrollbar Polish for Consistent UI */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: #020617;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #1e293b;
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #334155;
 }
