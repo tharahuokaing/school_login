@@ -4,7 +4,8 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
     // Grab elements and data values
     const email = document.getElementById('email').value.trim();
     const password = document.getElementById('password').value;
-    const alertBox = document.getElementById('formAlert');
+    const rememberMe = document.getElementById('rememberMe').checked;
+    const submitButton = document.querySelector('button[type="submit"]');
 
     // Validation Check
     if (!email || !password) {
@@ -12,8 +13,19 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
         return;
     }
 
-    // Success Authentication Simulation
+    // Handle Remember Me feature
+    if (rememberMe) {
+        localStorage.setItem('saved_school_email', email);
+    } else {
+        localStorage.removeItem('saved_school_email');
+    }
+
+    // Success Authentication Simulation & UI feedback
     showAlert('ការចូលប្រើប្រាស់បានជោគជ័យ! សូមរង់ចាំមួយភ្លែត...', 'success');
+    
+    // Disable button to prevent multiple submissions
+    submitButton.disabled = true;
+    submitButton.classList.add('opacity-50', 'cursor-not-allowed');
 
     // Network timeout delay redirecting back to core application workspace
     setTimeout(() => {
@@ -33,3 +45,12 @@ function showAlert(message, type) {
         alertBox.classList.add('bg-green-100', 'text-green-700');
     }
 }
+
+// Auto-fill email on page load if "Remember Me" was previously used
+window.addEventListener('DOMContentLoaded', () => {
+    const savedEmail = localStorage.getItem('saved_school_email');
+    if (savedEmail) {
+        document.getElementById('email').value = savedEmail;
+        document.getElementById('rememberMe').checked = true;
+    }
+});
